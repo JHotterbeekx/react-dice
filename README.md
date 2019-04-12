@@ -76,6 +76,12 @@ This styles the progress bar.
 />
 ```
 
+## Running and building
+
+The component is located in the `react-dice` folder, you can build it by running the command `npm build` in the corresponding folder.
+
+In the root you will find a simple page setup with ParcelJS which renders with two versions of the dice component on there. One is the local component imported, so you can change it while developing. The other is the latest version that is published to npm. You can run the page with the command `npm start` and the page can be located in your browser at `http://localhost:1234`. 
+
 ## License
 
 [MIT](http://vjpr.mit-license.org)
