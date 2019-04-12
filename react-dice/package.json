@@ -1,0 +1,36 @@
+{
+  "name": "react-dice-roller",
+  "version": "1.0.1",
+  "description": "A react component that allows you to simulate a dice throw",
+  "main": "dist/react-dice-roller.min.js",
+  "scripts": {
+    "build": "rollup -c -o dist/react-dice-roller.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JHotterbeekx/react-dice.git"
+  },
+  "keywords": [
+    "react",
+    "component",
+    "dice",
+    "game"
+  ],
+  "author": "John Hotterbeekx <john.online@hotterbeekx.nl> (https://github.com/JHotterbeekx)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JHotterbeekx/react-dice/issues"
+  },
+  "homepage": "https://github.com/JHotterbeekx/react-dice#readme",
+  "devDependencies": {
+    "rollup": "^1.10.0",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-uglify": "^6.0.2"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0"
+  }
+}
