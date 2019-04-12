@@ -1,6 +1,6 @@
 {
   "name": "react-dice-roller",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A react component that allows you to simulate a dice throw",
   "main": "dist/react-dice-roller.min.js",
   "scripts": {
