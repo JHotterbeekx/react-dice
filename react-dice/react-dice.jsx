@@ -5,7 +5,7 @@ export default class ReactDice extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = { value: null, rolling: false };
+    this.state = { value: null, rolling: false, hovering: false };
   }
 
   roll() {
@@ -42,17 +42,59 @@ export default class ReactDice extends React.Component {
     this.setState({ rolling: false })
   }
 
+  getDefaultStyleDice() {
+    if (this.props.diceClassName) return null;
+
+    return {
+      border: '1px solid black',
+      cursor: 'pointer',
+      width: '90px',
+      height: '90px',
+      textAlign: 'center',
+      fontSize: '50px',
+      fontWeight: 'bold',
+      verticalAlign: 'middle',
+      fontFamily: 'cursive',
+      lineHeight: '80px'
+    };
+  }
+
+  getDefaultStyleOverlay() {
+    if (this.props.overlayClassName) return null;
+
+    return {
+      width: '90px',
+      height: '90px',
+      position: 'absolute',
+      fontSize: '40px',
+      backgroundColor: 'rgba(108, 122, 137, 0.8)',
+      color: 'white',
+    }
+  }
+
+  getOverlay() {
+    if (this.state.rolling || (!this.state.hovering && this.state.value != null)) return null;
+    return (
+      <div style={this.getDefaultStyleOverlay()} className={this.props.overlayClassName}>
+        Roll
+      </div>
+    );
+  }
   
   render() {
-    let value = undefined;
-    if (this.state.value !== null) {
-      value = <h1>{this.state.value}</h1>
-    }
+    let value = this.state.value ;
+    if (value === null) value = 'Roll';
 
     return (
-      <div>
-        {value}
-        <button disabled={this.state.rolling} onClick={() => this.throw()}>Roll</button>
+      <div 
+        onClick={() => this.throw()} 
+        style={this.getDefaultStyleDice()}
+        className={this.props.diceClassName}
+        onMouseMove={() => { this.setState({ hovering: true })}}
+        onMouseLeave={() => { this.setState({ hovering: false })}}
+      >
+        {this.getOverlay()}
+        {this.state.value}
       </div>
     );
   }
@@ -66,4 +108,6 @@ ReactDice.defaultProps = {
 ReactDice.propTypes = {
   sides: PropTypes.number,
   rollseconds: PropTypes.number,
+  diceClassName: PropTypes.string,
+  overlayClassName: PropTypes.string,
 };
