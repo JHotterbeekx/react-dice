@@ -5,20 +5,23 @@ export default class ReactDice extends React.Component {
   constructor(props) {
     super(props);
     
-    this.state = { value: null, rolling: false, hovering: false };
+    this.state = { value: null, rolling: false, hovering: false, progress: 0 };
   }
 
   roll() {
-    this.setState({ value: Math.floor((Math.random() * this.props.sides) + 1) })
+    this.setState({ 
+      value: Math.floor((Math.random() * this.props.sides) + 1),
+      progress: Math.floor((Date.now() - this.start) / (this.props.rollSeconds * 1000) * 100),
+    })
     this.nextRoll();
   }
   
   nextRoll() {
     this.timer = setTimeout(() => this.roll(), this.interval);
 
-    const timeLeft = (this.props.rollseconds * 1000) - (Date.now() - this.start);
+    const timeLeft = (this.props.rollSeconds * 1000) - (Date.now() - this.start);
 
-    if (timeLeft >= (this.props.rollseconds * 1000) / (10 / 3))  {
+    if (timeLeft >= (this.props.rollSeconds * 1000) / (10 / 3))  {
       this.interval = 10;
     } else {
       this.interval *= 1.4;
@@ -32,14 +35,14 @@ export default class ReactDice extends React.Component {
   }
 
   throw() {
-    this.setState({ rolling: true })
+    this.setState({ rolling: true, progress: 0 })
     this.start = Date.now();
     this.interval = 1;
     this.nextRoll();    
   }
 
   done() {
-    this.setState({ rolling: false })
+    this.setState({ rolling: false, progress: 100 })
   }
 
   getDefaultStyleDice() {
@@ -81,6 +84,20 @@ export default class ReactDice extends React.Component {
     );
   }
   
+  getProgressBar() {
+    if (!this.props.showProgress) return null;
+
+    let style = {width: this.state.progress + '%'};
+    if (!this.props.progressClassName) {
+      style.height = '3px';
+      style.backgroundColor = 'black';
+    }
+
+    return (
+      <div style={style} className={this.props.progressClassName}></div>
+    );
+  }
+
   render() {
     let value = this.state.value ;
     if (value === null) value = 'Roll';
@@ -93,8 +110,10 @@ export default class ReactDice extends React.Component {
         onMouseMove={() => { this.setState({ hovering: true })}}
         onMouseLeave={() => { this.setState({ hovering: false })}}
       >
+        {this.getProgressBar()}
         {this.getOverlay()}
         {this.state.value}
+        <div></div>
       </div>
     );
   }
@@ -102,12 +121,15 @@ export default class ReactDice extends React.Component {
 
 ReactDice.defaultProps = {
   sides: 6,
-  rollseconds: 2,
+  rollSeconds: 2,
+  showProgress: false,
 };
 
 ReactDice.propTypes = {
   sides: PropTypes.number,
-  rollseconds: PropTypes.number,
+  rollSeconds: PropTypes.number,
+  showProgress: PropTypes.bool,
   diceClassName: PropTypes.string,
   overlayClassName: PropTypes.string,
+  progressClassName: PropTypes.string,
 };

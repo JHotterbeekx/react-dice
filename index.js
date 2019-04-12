@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import ReactDice from './react-dice/react-dice';
 
 ReactDOM.render(
-  <ReactDice sides={20} />,
+  <ReactDice sides={20} showProgress />,
   document.getElementById('root')
 );
