@@ -1,0 +1,19 @@
+{
+  "name": "react-dice-page",
+  "version": "1.0.0",
+  "description": "Page for react-dice component",
+  "main": "index.js",
+  "repository": "https://github.com/JHotterbeekx/react-dice.git",
+  "author": "John Hotterbeekx <john.online@hotterbeekx.nl>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
