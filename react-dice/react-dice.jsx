@@ -8,6 +8,10 @@ export default class ReactDice extends React.Component {
     this.state = { value: null, rolling: false, hovering: false, progress: 0 };
   }
 
+  componentWillUnmount () {
+    if (this.timer) clearTimeout(this.timer);
+  }
+
   roll() {
     this.setState({ 
       value: Math.floor((Math.random() * this.props.sides) + 1),
