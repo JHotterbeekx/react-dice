@@ -1,4 +1,4 @@
-# react-dice-thrower
+# react-dice-roller
 > A react component allowing you to render a dice on the screen with which the user can interact.
 
 [![npm version](https://badge.fury.io/js/react-dice-roller.svg)](https://badge.fury.io/js/react-dice-roller)
@@ -7,13 +7,13 @@
 ## Install - NPM
 
 ```bash
-npm i react-dice-thrower
+npm i react-dice-roller
 ```
 
 ## Install - Yarn
 
 ```bash
-yarn add react-dice-thrower
+yarn add react-dice-roller
 ```
 
 
@@ -22,7 +22,8 @@ yarn add react-dice-thrower
 Adding a dice to your page is pretty easy, just import it and define the number of sides.
 
 ```js
-import ReactDice from 'react-dice-thrower';
+# react-dice-roller
+import ReactDice from 'react-dice-roller';
 
 <ReactDice size={20} /> 
 <ReactDice size={12} />
